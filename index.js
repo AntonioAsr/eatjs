@@ -18,7 +18,7 @@ function closeConnection(){
 function createNewCollection(){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbase = db.db("eatjs"); //here
+        var dbase = db.db("eatjs"); 
         dbase.createCollection("eatjsCollection", function(err, res) {
             if (err) throw err;
             console.log("Collection created!");
@@ -29,10 +29,10 @@ function createNewCollection(){
 
 function insertDocumentIntoCollection(){
     MongoClient.connect(url, function(err, db) {
-        var dbase = db.db("eatjs"); //here        
+        var dbase = db.db("eatjs") ;
         if (err) throw err;
         var myobj = { name: "Company Inc", address: "Highway 37" };
-        var dbase = db.db("eatjs"); //here
+        var dbase = db.db("eatjs"); 
         dbase.collection("eatjsCollection").insertOne(myobj, function(err, res) {
           if (err) throw err;
           console.log("1 document inserted");
