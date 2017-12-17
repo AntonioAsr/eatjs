@@ -40,14 +40,37 @@
         <div id="calendar-dates">
         </div>
     </div>
-    <button onclick="createCalendar()">crateCalendar</button>
+    <button onclick="previousMonth()">crateCalendar</button>
+    <button onclick="setTimeTravel()">nextMonth</button>
+    <button onclick="setState(-1)">previosMonth</button>
 </body>
 <script>
 
-function createCalendar(){   
+
+var timeTravel = 0;
+
+function getState(){
+    return timeTravel;
+}
+setState("fuck it niga");
+
+function setState(timeTravel){
+    window.timeTravel = timeTravel;
+    createCalendar();
+}
+
+    
+
+function createCalendar(timeTravel){
+    this.timeTravel = window.timeTravel;
+    console.log("el valor que recibe create calendar de time travel es:",timeTravel);
     var d = new Date();
     var month_name = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var month = d.getMonth();   //0-11
+    var month = d.getMonth() ;   //0-11
+    console.log("type of month is:", typeof( month ));
+    console.log("type of timeTravel is:", typeof( timeTravel ));
+    console.log(month - 2 );
+
     var year = d.getFullYear(); //2014
     var first_date = month_name[month] + " " + 1 + " " + year;
     //September 1 2014
@@ -61,10 +84,14 @@ function createCalendar(){
     var calendar = get_calendar(day_no, days);
     document.getElementById("calendar-month-year").innerHTML = month_name[month]+" "+year;
     document.getElementById("calendar-dates").appendChild(calendar);
-    console.log(month)
+    console.log(month);
+    return month;
+}
 
 
-function get_calendar(day_no, days){
+
+function get_calendar(day_no, days, timeTravel){
+
     var table = document.createElement('table');
     var tr = document.createElement('tr');
     
@@ -113,10 +140,6 @@ function get_calendar(day_no, days){
         table.appendChild(tr);
     }
     return table;
-}
-
-
-
 }
 
 
